@@ -1,14 +1,24 @@
 import React from "react";
 import DonateBloodPic from "../assets/DonateBloodPic.png";
+import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db, storage } from "../firebase_config";
 const DonateBlood = () => {
+  const addDonarRef = collection(db, "Blood Donors");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const obj = Object.fromEntries(formData.entries())
-    console.log({obj})
-  } 
-  
+    const donor = Object.fromEntries(formData.entries());
+    
+    try {
+      // Use addDoc to add a new document to the "blooddonation" collection
+      await addDoc(addDonarRef, donor);
+      console.log('Donor added successfully');
+    } catch (error) {
+      console.error('Error adding donor:', error);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center gap-8 m-14">
@@ -80,7 +90,7 @@ const DonateBlood = () => {
                 for="floating_phone"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-ororange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Phone number 
+                Phone number
               </label>
             </div>
             <div class="relative z-0 w-full mb-5 group">

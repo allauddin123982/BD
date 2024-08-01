@@ -1,5 +1,5 @@
-import HeroLeft from "../assets/HeroLeft.png";
-import mainLife from "../assets/mainLife.png";
+import HeroLeft from "../../assets/HeroLeft.png";
+import mainLife from "../../assets/mainLife.png";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { IoMail } from "react-icons/io5";
 const Hero = () => {
   return (
     <>
-      <div className="border-red-600 w-full h-fit md:flex pl-4 pr-4 md:pl-32 md:pr-32 ">
+      <div className="w-full h-fit md:flex pl-4 pr-4 md:pl-32 md:pr-32 ">
         {/* left */}
         <div className="w-full p-8 md:pt-6">
           <p className="text-5xl md:text-7xl font-semibold md:p-2 ">
@@ -120,6 +120,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      
     </>
   );
 };
