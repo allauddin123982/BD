@@ -3,22 +3,27 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase_config";
 
 import DonateBloodPic from "../../assets/DonateBloodPic.png";
-const Donors = () => {
+const Donors = ({ bloodType, bloodLocation, send }) => {
   const [donors, setDonors] = useState([]);
+  const [filteredDonors, setFilteredDonors] = useState([]);
+
   const getDonorsRef = collection(db, "Blood Donors");
 
   const getAllDonors = async () => {
     let unSubscribe;
     try {
       const queryDonors = query(getDonorsRef);
-
       unSubscribe = onSnapshot(queryDonors, (snapshot) => {
-        //keep track of query if changes
         let docs = [];
         snapshot.forEach((doc) => {
           const data = doc.data();
           const id = doc.id;
-          docs.push({ ...data, id });
+          const formattedData = {
+            ...data,
+            id,
+            address: data.address ? data.address.toLowerCase() : null, // Ensure address is converted to lowercase if it exists
+          };
+          docs.push(formattedData);
         });
         setDonors(docs);
       });
@@ -27,49 +32,78 @@ const Donors = () => {
     }
     return () => unSubscribe();
   };
+
+  useEffect(() => {
+    const getFilterDonors = () => {
+      const newDonors = donors.filter(
+        (item) =>
+          (bloodType ? item.bloodType === bloodType : true) &&
+          (bloodLocation ? item.address.includes(bloodLocation) : true)
+      );
+      setFilteredDonors(newDonors);
+    };
+
+    getFilterDonors();
+  }, [bloodType, bloodLocation, donors]);
+
   useEffect(() => {
     getAllDonors();
   }, []);
+
   console.log(" helooooo", { donors });
   return (
     <>
-      <div className="border border-black mt-20 mb-20 w-full h-fit md:flex gap-4 pl-4 pr-4 md:pl-32 md:pr-32 ">
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col">
-          <img
-            class="rounded-full w-56 h-56 object-cover"
-            src={DonateBloodPic}
-            alt=""
-          />
+      <div className="my-20 w-full h-fit flex flex-wrap flex-col md:flex-row items-center justify-center gap-x-14 gap-y-4 pl-4 pr-4 md:pl-12 md:pr-12">
+        {send
+          ? filteredDonors.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  className="w-60 md:w-[300px] md:h-52 bg-gray-200 rounded-lg shadow flex flex-col md:flex-row items-center  gap-2 p-2"
+                >
+                  <div className="desc p-2 ">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                      Name: {item.Name}
+                    </h5>
 
-          <div class="p-5 flex flex-col items-center justify-center">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Allauddin
-              </h5>
-            </a>
-            <p class="font-normal text-gray-700">"Av. dos Andradas, 3000</p>
-            <p class="font-normal text-gray-700">22</p>
-            <p class="font-normal text-gray-700">B+</p>
-            <p class="font-normal text-gray-700">email</p>
-            <p class="font-normal text-gray-700">passwrds</p>
-          </div>
-        </div>
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center justify-center">
-          <a href="#" className="">
-            <img class="rounded-t-lg w-56" src={DonateBloodPic} alt="" />
-          </a>
-          <div class="p-5 flex flex-col items-center justify-center">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Noteworthy technology acquisitions 2021
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
-          </div>
-        </div>
+                    <p className="text-gray-700">Age: {item.age}</p>
+                    <p className="text-gray-700">Email: {item.email} </p>
+                    <p className="text-gray-700">
+                      Blood Group: {item.bloodType}
+                    </p>
+                    <p className="text-gray-700">Phone # {item.phone}</p>
+                    <p className="text-gray-700">
+                      Address: {item.address.substring(0, 24)}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          : donors.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  className="w-60 md:w-[300px] md:h-52 bg-gray-200 rounded-lg shadow flex flex-col md:flex-row items-center  gap-2 p-2"
+                >
+                  <div className="desc p-2 ">
+                    <a href="#">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                        Name: {item.Name}
+                      </h5>
+                    </a>
+                    <p className="text-gray-700">Age: {item.age}</p>
+                    <p className="text-gray-700">Email: {item.email} </p>
+                    <p className="text-gray-700">
+                      Blood Group: {item.bloodType}
+                    </p>
+                    <p className="text-gray-700">Phone # {item.phone}</p>
+                    <p className="text-gray-700">
+                      Address: {item.address.substring(0, 24)}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
       </div>
     </>
   );

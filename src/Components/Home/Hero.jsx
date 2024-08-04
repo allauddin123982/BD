@@ -1,10 +1,18 @@
+import { useState } from "react";
 import HeroLeft from "../../assets/HeroLeft.png";
 import mainLife from "../../assets/mainLife.png";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-const Hero = () => {
+const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, setSend }) => {
+ 
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Perform search logic if needed
+    setSend(true)
+  };
   return (
     <>
       <div className="w-full h-fit md:flex pl-4 pr-4 md:pl-32 md:pr-32 ">
@@ -23,25 +31,31 @@ const Hero = () => {
 
         {/* Right */}
         <div className="right w-full border-black md:pt-4 flex flex-col items-center">
-          <form class="flex flex-col w-[360px] md:w-full md:flex md:flex-row gap-2 p-2 ">
+          <form className="flex flex-col w-[360px] md:w-full md:flex md:flex-row gap-2 p-2 "
+            onSubmit={handleSearch}
+          >
             <input
               type="search"
               id="default-search"
-              class=" w-full p-4 ps-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+              className="w-full p-4 ps-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
               placeholder="Search Blood Type"
               required
-            />
+              value={bloodType}
+              onChange={(e) => setBloodType(e.target.value) }
+              />
 
             <input
               type="search"
               id="default-search"
-              class=" w-full p-4 ps-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+              className=" w-full p-4 ps-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
               placeholder="Search By Location"
               required
+              value={bloodLocation}
+              onChange={(e) => setBloodLocation(e.target.value) }
             />
             <button
               type="submit"
-              class="text-white end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-4 py-2 "
+              className="text-white end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 font-medium rounded-lg text-sm px-4 py-2 "
             >
               Search
             </button>
