@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import Hero from '../Components/Home/Hero'
-import Donors from '../Components/Home/Donors'
+import React, { useState } from "react";
+import Hero from "../Components/Home/Hero";
+import Donors from "../Components/Home/Donors";
 
 const Home = () => {
   const [bloodType, setBloodType] = useState("");
@@ -16,13 +16,13 @@ const Home = () => {
         send={send}
         setSend={setSend}
       />
-      <Donors send = { send } 
-      bloodType={bloodType.toLowerCase()}
-      bloodLocation={bloodLocation.toLowerCase()}
+      <Donors
+        send={send}
+        bloodType={bloodType.toLowerCase()}
+        bloodLocation={bloodLocation.toLowerCase()}
       />
-    
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

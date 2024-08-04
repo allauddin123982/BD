@@ -10,7 +10,6 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
   
   const handleSearch = (e) => {
     e.preventDefault();
-    // Perform search logic if needed
     setSend(true)
   };
   return (
