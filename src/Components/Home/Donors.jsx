@@ -83,7 +83,7 @@ const Donors = ({ bloodType, bloodLocation, send }) => {
               return (
                 <div
                   key={item.id}
-                  className="w-60 md:w-[300px] md:h-52 bg-gray-200 rounded-lg shadow flex flex-col md:flex-row items-center  gap-2 p-2"
+                  className="w-60 md:w-[300px] md:h-52 bg-gray-200 rounded-lg shadow flex flex-col md:flex-row items-center gap-2 p-2"
                 >
                   <div className="desc p-2 ">
                     <a href="#">

@@ -1,6 +1,12 @@
 import React from "react";
 import DonateBloodPic from "../assets/DonateBloodPic.png";
-import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { db, storage } from "../firebase_config";
 const DonateBlood = () => {
   const addDonarRef = collection(db, "Blood Donors");
@@ -9,13 +15,13 @@ const DonateBlood = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const donor = Object.fromEntries(formData.entries());
-    
+
     try {
       // Use addDoc to add a new document to the "blooddonation" collection
       await addDoc(addDonarRef, donor);
-      console.log('Donor added successfully');
+      console.log("Donor added successfully");
     } catch (error) {
-      console.error('Error adding donor:', error);
+      console.error("Error adding donor:", error);
     }
   };
 

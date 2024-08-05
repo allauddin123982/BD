@@ -5,6 +5,7 @@ import DonateBlood from "./Pages/DonateBlood";
 import DonationForCancer from "./Pages/DonationForCancer";
 import NavBar from "./Components/Home/NavBar";
 import Home from "./Pages/Home";
+import Purchase from "./Pages/Pucrhase";
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/el" element={<Eligibility />} />
         <Route path="/DonateBlood" element={<DonateBlood/>} />
+        <Route path="/purchase" element={<Purchase/>} />
         <Route path="/DonateForCancer" element={<DonationForCancer/>} />
       </Routes>
     </Router>

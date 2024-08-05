@@ -34,7 +34,7 @@ const NavBar = () => {
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
             <li className="">
-              <Link to="/gallery">Campaign</Link>
+              <Link to="/purchase">Purchase</Link>
             </li>
             <li className="">
               <Link to="/contact">Donate Plasma</Link>
