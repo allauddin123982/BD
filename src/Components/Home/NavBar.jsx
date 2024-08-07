@@ -34,13 +34,13 @@ const NavBar = () => {
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
             <li className="">
+              <Link to="/DonateForCancer">Donation Drive</Link>
+            </li>
+            <li className="">
               <Link to="/purchase">Purchase</Link>
             </li>
             <li className="">
-              <Link to="/contact">Donate Plasma</Link>
-            </li>
-            <li className="">
-              <Link to="/DonateForCancer">Donate for Cancer</Link>
+              <Link to="/cart">Cart</Link>
             </li>
           </ul>
 
@@ -60,9 +60,14 @@ const NavBar = () => {
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
             <li className="p-5 font-bold">Campaign</li>
-            <li className="p-5 font-bold">Donate Plasma</li>
             <li className="p-5 font-bold">
-              <Link to="/DonateForCancer">Donate for Cancer</Link>
+              <Link to="/DonateForCancer">Donation Drive</Link>
+            </li>
+            <li className="p-5 font-bold">
+              <Link to="/purchase">Purchase</Link>
+            </li>
+            <li className="p-5 font-bold">
+              <Link to="/cart">Cart</Link>
             </li>
           </ul>
         </div>

@@ -3,7 +3,7 @@ import './Purchase.css'
 import products from '../Components/Products'
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 
-const Purchase = () => {
+const Purchase = ({addtocart}) => {
   return (
     <div>
      
@@ -11,7 +11,7 @@ const Purchase = () => {
         {products.map((curElm) => {
           return (
             <>
-              <div className="box">
+              <div className="box" key={curElm.id}>
                 <div className="img_box">
                   <img src={curElm.image} alt="hello"></img>
                   <div className="icon">
@@ -26,7 +26,7 @@ const Purchase = () => {
                 <div className="detail">
                   <h3>{curElm.Name}</h3>
                   <p>$ {curElm.price}</p>
-                  {/* <button onClick={() => addtocart(curElm)}>Add To Cart</button> */}
+                  <button onClick={() => addtocart(curElm)}>Add To Cart</button>
                 </div>
               </div>
             </>
