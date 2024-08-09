@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import HeroLeft from "../../assets/HeroLeft.png";
 import mainLife from "../../assets/mainLife.png";
 import { FaInstagram } from "react-icons/fa";
@@ -6,6 +6,8 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import "./home.css";
 const Hero = ({
   bloodType,
   setBloodType,
@@ -14,10 +16,73 @@ const Hero = ({
   send,
   setSend,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const elementRef = useRef();
+  const carouselRef = useRef(null);
+  const allPics = [
+    "/image/a7.jpg",
+    "/image/a9.jpg",
+    "/image/a10.jpg",
+    "/image/a11.jpg",
+    "/image/a12.jpeg",
+  ];
+
   const handleSearch = (e) => {
     e.preventDefault();
     setSend(true);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      SliderRight(elementRef.current);
+    }, 4000); // Move to the right every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const SliderRight = (carousel) => {
+    if (carousel) {
+      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+      if (carousel.scrollLeft >= maxScrollLeft) {
+        carousel.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
+      }
+    }
+  };
+
+  const Sliderleft = (carousel) => {
+    if (carousel) {
+      if (carousel.scrollLeft === 0) {
+        carousel.scrollTo({
+          left: carousel.scrollWidth - carousel.clientWidth,
+          behavior: "smooth",
+        });
+      } else {
+        carousel.scrollBy({ left: -carousel.clientWidth, behavior: "smooth" });
+      }
+    }
+  };
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    const interval = setInterval(() => {
+      if (carousel) {
+        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= maxScrollLeft) {
+          carousel.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
+        }
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <div className="w-full h-fit md:flex pl-4 pr-4 md:pl-32 md:pr-32 ">
@@ -31,7 +96,31 @@ const Hero = ({
             Donate Now...!
           </p>
 
-          <img src={HeroLeft} alt="heroleft" className="md:w-[600px] pt-4" />
+          <div className="relative w-[380px] md:w-[600px] ">
+            <AiOutlineLeft
+              className="arrow arrow-left"
+              onClick={() => Sliderleft(elementRef.current)}
+            />
+            <div
+              ref={elementRef}
+              className="carousel-container scrollbar-hide md:scrollbar-default"
+            >
+              {allPics.map((item, index) => (
+                <img
+                  key={index}
+                  src={item}
+                  alt={`Slide ${index + 1}`}
+                  className="carousel-image w-full"
+                />
+              ))}
+            </div>
+            <AiOutlineRight
+              className="arrow arrow-right"
+              onClick={() => SliderRight(elementRef.current)}
+            />
+          </div>
+
+          {/* <img src={HeroLeft} alt="heroleft" className="md:w-[600px] pt-4" /> */}
         </div>
 
         {/* Right */}
@@ -89,18 +178,79 @@ const Hero = ({
                 Donate Plasma
               </button>
             </Link>
-            <Link to={"/artical"}>
-              <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-                Health Article
-              </button>
-            </Link>
+
             <Link to="/DonateForCancer">
               <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
                 Donation Drive
               </button>
             </Link>
+
+            <div className="relative">
+              <button
+                id="dropdownDefaultButton"
+                onClick={toggleDropdown}
+                className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md text-center inline-flex items-center"
+                type="button"
+              >
+                Articles
+                <svg
+                  className="w-2.5 h-2.5 ms-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown menu */}
+              {isOpen && (
+                <div
+                  id="dropdown"
+                  className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2"
+                >
+                  <ul
+                    className="py-2 text-sm text-gray-700"
+                    aria-labelledby="dropdownDefaultButton"
+                  >
+                    {" "}
+                    <li>
+                      <Link
+                        to="/DiscoverPlasma"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                      >
+                        Discover Plasma
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/Cardiovascular "
+                        className="block px-4 py-2 hover:bg-gray-100"
+                      >
+                        Cardiovascular
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/BloodTypes"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                      >
+                        BloodTypes
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="social_Links md:absolute bottom-14">
+          <div className="social_Links ">
             <p className="text-xl p-2 font-mono text-center">
               FOLLOW US ON SOCIAL MEDIA
             </p>

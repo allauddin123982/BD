@@ -31,11 +31,9 @@ const NavBar = () => {
               <Link to="/el">Eligibility</Link>
             </li>
             <li className="hover:text-orange-400">
-              <Link to="/donateBlood">Donate Blood</Link>
+              <Link to="/donateBlood">Donate Blood | Plasma</Link>
             </li>
-            <li className="hover:text-orange-400">
-              <Link to="/donateBlood">Donate Plasma</Link>
-            </li>
+          
 
             <li className="hover:text-orange-400">
               <Link to="/purchase">Support Cancer Patient</Link>
@@ -60,9 +58,7 @@ const NavBar = () => {
             <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
-            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
-              <Link to="/donateBlood">Donate Plasma</Link>
-            </li>
+           
             <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/purchase">Support Cancer Patient</Link>
             </li>

@@ -5,7 +5,11 @@ import { AiFillEye, AiFillHeart } from "react-icons/ai";
 
 const Purchase = ({ addtocart }) => {
   return (
-    <div>
+    <>
+    <div className="text-center p-8 text-2xl text-gray-500"> 
+
+      <h1>Purchase handmade products created by young cancer patients, and your purchase will directly support their cancer treatment.</h1>
+    </div>
       <div className="flex flex-wrap gap-x-20 justify-center">
         {products.map((curElm) => {
           return (
@@ -28,7 +32,7 @@ const Purchase = ({ addtocart }) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
