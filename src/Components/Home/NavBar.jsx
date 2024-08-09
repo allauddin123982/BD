@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <>
       <div className="bg-gradient-to-r from-gray-600 to-slate-900 p-2 ">
-        <div className="max-w-[1240px] items-center py-2 flex justify-between mx-auto">
+        <div className="max-w-[1380px] items-center py-2 flex justify-between mx-auto">
           <div className="text-4xl font-bold font-serif text-white flex items-center gap-2">
             <p className="text-red-600">Blood</p> Donation
           </div>
@@ -24,49 +24,49 @@ const NavBar = () => {
           )}
 
           <ul className="hidden md:flex text-white text-xl gap-10 ">
-            <li className="">
+            <li className="hover:text-orange-400">
               <Link to="/">Home</Link>
             </li>
-            <li className="">
+            <li className="hover:text-orange-400">
               <Link to="/el">Eligibility</Link>
             </li>
-            <li className="">
+            <li className="hover:text-orange-400">
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
-            <li className="">
-              <Link to="/DonateForCancer">Donation Drive</Link>
+            <li className="hover:text-orange-400">
+              <Link to="/donateBlood">Donate Plasma</Link>
             </li>
-            <li className="">
-              <Link to="/purchase">Purchase</Link>
+
+            <li className="hover:text-orange-400">
+              <Link to="/purchase">Support Cancer Patient</Link>
             </li>
-            <li className="">
+            <li className="hover:text-orange-400">
               <Link to="/cart">Cart</Link>
             </li>
           </ul>
 
           {/* Responsive menu */}
           <ul
-            className={`bg-gradient-to-r from-slate-900 to-gray-900 duration-500 md:hidden text-white fixed bg-gray-dark p-5  top-[98px] w-full h-screen
+            className={`bg-gradient-to-r from-slate-900 to-gray-900 duration-500 md:hidden text-white fixed bg-gray-dark p-5  top-[72px] w-full h-screen z-20
                     ${toggle ? "left-[0%]" : "left-[-100%]"}
                 `}
           >
-            <li className="p-5 font-bold">
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/">Home</Link>
             </li>
-            <li className="p-5 font-bold">
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/el">Eligibility</Link>
             </li>
-            <li className="p-5 font-bold">
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/donateBlood">Donate Blood</Link>
             </li>
-            <li className="p-5 font-bold">Campaign</li>
-            <li className="p-5 font-bold">
-              <Link to="/DonateForCancer">Donation Drive</Link>
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
+              <Link to="/donateBlood">Donate Plasma</Link>
             </li>
-            <li className="p-5 font-bold">
-              <Link to="/purchase">Purchase</Link>
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
+              <Link to="/purchase">Support Cancer Patient</Link>
             </li>
-            <li className="p-5 font-bold">
+            <li className="p-5 font-bold" onClick={() => setToggle(!toggle)}>
               <Link to="/cart">Cart</Link>
             </li>
           </ul>

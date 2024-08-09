@@ -1,70 +1,52 @@
 const Homeproduct = [
-    {
-      id: 1,
-      Name: "Candle",
-      price: "26",
-      image: "image/candle.jpg",
-      cat: "electronics",
-      type: "new",
-    },
-    {
-      id: 2,
-      Name: "Candle",
-      price: "96",
-      image: "image/candle2.jpg",
-      cat: "screestand",
-      type: "new",
-    },
-    {
-      id: 3,
-      Name: "Painting",
-      price: "300",
-      image: "image/painting.jpg",
-      cat: "phone",
-      type: "new",
-    },
-    {
-      id: 4,
-      Name: "Painting",
-      price: "956",
-      image: "image/painting2.jpg",
-      cat: "electronics",
-      type: "featured",
-    },
-    {
-      id: 5,
-      Name: "Painting",
-      price: "389",
-      image: "image/painting3.jpg",
-      cat: "phone",
-      type: "feature",
-    },
-    {
-      id: 6,
-      Name: "Painting",
-      price: "67",
-      image: "image/painting4.jpg",
-      cat: "electronics",
-      type: "top",
-    },
-    {
-      id: 7,
-      Name: "Mug",
-      price: "76",
-      image: "image/glass.jpg",
-      cat: "phone",
-      type: "feature",
-    },
-    {
-      id: 8,
-      Name: "Mug",
-      price: "350",
-      image: "image/glass2.jpg",
-      cat: "tv",
-      type: "top",
-    },
-    
-    
-  ];
-  export default Homeproduct;
-  
+  {
+    id: 1,
+    Name: "Candle",
+    price: "900", // 26 USD to INR
+    image: "image/candle.jpg",
+  },
+  {
+    id: 2,
+    Name: "Candle",
+    price: "1340", // 96 USD to INR
+    image: "image/candle2.jpg",
+  },
+  {
+    id: 3,
+    Name: "Painting",
+    price: "3000", // 300 USD to INR
+    image: "image/painting.jpg",
+  },
+  {
+    id: 4,
+    Name: "Painting",
+    price: "4200", // 956 USD to INR
+    image: "image/painting2.jpg",
+  },
+  {
+    id: 5,
+    Name: "Painting",
+    price: "6300", // 389 USD to INR
+    image: "image/painting3.jpg",
+  },
+  {
+    id: 6,
+    Name: "Painting",
+    price: "2234", // 67 USD to INR
+    image: "image/painting4.jpg",
+  },
+  {
+    id: 7,
+    Name: "Mug",
+    price: "788", // 76 USD to INR
+    image: "image/glass.jpg",
+  },
+  {
+    id: 8,
+    Name: "Mug",
+    price: "1100", // 350 USD to INR
+    image: "image/glass2.jpg",
+  },
+];
+
+export default Homeproduct;

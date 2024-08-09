@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Purchase from "./Pages/Pucrhase";
 import { useState } from "react";
 import Cart from "./Pages/Cart";
+import Articals from "./Pages/Articals";
 function App() {
   
   const [cart, setCart] = useState([])
@@ -39,6 +40,7 @@ function App() {
         <Route path="/purchase" element={<Purchase  addtocart={addtocart}  />} />
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart}/>}/>
         <Route path="/DonateForCancer" element={<DonationForCancer/>} />
+        <Route path="/artical" element={<Articals/>} />
       </Routes>
     </Router>
     </>

@@ -5,12 +5,18 @@ import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, setSend }) => {
- 
-  
+import { Link } from "react-router-dom";
+const Hero = ({
+  bloodType,
+  setBloodType,
+  bloodLocation,
+  setBloodLocation,
+  send,
+  setSend,
+}) => {
   const handleSearch = (e) => {
     e.preventDefault();
-    setSend(true)
+    setSend(true);
   };
   return (
     <>
@@ -30,7 +36,8 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
 
         {/* Right */}
         <div className="right w-full border-black md:pt-4 flex flex-col items-center">
-          <form className="flex flex-col w-[360px] md:w-full md:flex md:flex-row gap-2 p-2 "
+          <form
+            className="flex flex-col w-[360px] md:w-full md:flex md:flex-row gap-2 p-2 "
             onSubmit={handleSearch}
           >
             <input
@@ -40,8 +47,8 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
               placeholder="Search Blood Type"
               required
               value={bloodType}
-              onChange={(e) => setBloodType(e.target.value) }
-              />
+              onChange={(e) => setBloodType(e.target.value)}
+            />
 
             <input
               type="search"
@@ -50,7 +57,7 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
               placeholder="Search By Location"
               required
               value={bloodLocation}
-              onChange={(e) => setBloodLocation(e.target.value) }
+              onChange={(e) => setBloodLocation(e.target.value)}
             />
             <button
               type="submit"
@@ -71,28 +78,29 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
             </p>
           </div>
 
-          <div className="tabs flex flex-wrap gap-6 p-4 border-b-4 pb-10 border-black ">
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Check Eligibilty
-            </button>
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Donate Blood
-            </button>
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Article
-            </button>
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Join the campaign
-            </button>
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Donate Plasma
-            </button>
-            <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-              Donate for Cancer
-            </button>
+          <div className="tabs flex flex-wrap gap-6 p-4 border-b-4 pb-10 border-black mt-4 ">
+            <Link to={"/DonateBlood"}>
+              <button className="bg-black text-white p-2 md:p-3 aspect-auto md:text-lg md:font-medium rounded-md">
+                Donate Blood
+              </button>
+            </Link>
+            <Link to={"/DonateBlood"}>
+              <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
+                Donate Plasma
+              </button>
+            </Link>
+            <Link to={"/artical"}>
+              <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
+                Health Article
+              </button>
+            </Link>
+            <Link to="/DonateForCancer">
+              <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
+                Donation Drive
+              </button>
+            </Link>
           </div>
-
-          <div className="social_Links">
+          <div className="social_Links md:absolute bottom-14">
             <p className="text-xl p-2 font-mono text-center">
               FOLLOW US ON SOCIAL MEDIA
             </p>
@@ -133,8 +141,6 @@ const Hero = ({ bloodType, setBloodType, bloodLocation, setBloodLocation, send, 
           </div>
         </div>
       </div>
-
-      
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DonateBloodPic from "../assets/DonateBloodPic.png";
 import {
   addDoc,
@@ -9,7 +9,10 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../firebase_config";
 const DonateBlood = () => {
-  const addDonarRef = collection(db, "Blood Donors");
+  const [dType, setDType] = useState("");
+  const [typeValue, setTypeValue] = useState(false);
+  const addBloodDonarRef = collection(db, "Blood Donors");
+  const addPlasmaDonarRef = collection(db, "Plasma Donors");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,14 +20,22 @@ const DonateBlood = () => {
     const donor = Object.fromEntries(formData.entries());
 
     try {
-      // Use addDoc to add a new document to the "blooddonation" collection
-      await addDoc(addDonarRef, donor);
+      if(dType === "blood"){
+
+        await addDoc(addBloodDonarRef, donor);
+      
+      }
+      else{
+
+        await addDoc(addPlasmaDonarRef, donor)
+      }
       console.log("Donor added successfully");
     } catch (error) {
       console.error("Error adding donor:", error);
     }
   };
 
+  console.log({dType})
   return (
     <>
       <div className="flex justify-center items-center gap-8 m-14">
@@ -99,22 +110,57 @@ const DonateBlood = () => {
                 Phone number
               </label>
             </div>
-            <div className="relative z-0 w-full mb-5 group">
+
+           <p className="text-gray-500">
+            What are you donating ?
+            </p>
+            <div className="mt-2 w-full mb-5 flex items-center gap-x-2 text-sm text-gray-500">
+              Blood
               <input
-                type="text"
-                name="bloodType"
-                id="floating_blood_type"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-ororange-500 peer"
-                placeholder=" "
-                required
+                type="radio"
+                name="blood"
+                className=""
+                
+                value="blood"
+                checked={dType === "blood"}
+                onChange={(e) => {
+                  setDType(e.target.value), setTypeValue(true);
+                }}
               />
-              <label
-                for="floating_blood_type"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Blood type
-              </label>
+              Plasma
+              <input
+                type="radio"
+                name="plasma"
+                className=""
+                
+                value="plasma"
+                checked={dType === "plasma"}
+                onChange={(e) => {
+                  setDType(e.target.value), setTypeValue(true);
+                }}
+               
+              />
             </div>
+
+            {typeValue ? (
+              <div className="relative z-0 w-full mb-5 group">
+                <input
+                  type="text"
+                  name="bloodType"
+                  id="floating_blood_type"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-ororange-500 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  for="floating_blood_type"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Blood type
+                </label>
+              </div>
+            ) : null}
+
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="text"

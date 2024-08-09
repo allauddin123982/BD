@@ -53,8 +53,14 @@ const Cart = ({ cart, setCart }) => {
   return (
     <>
       <div className="cart flex flex-col items-center mx-10">
-        <span class="text-2xl flex w-full justify-center m-4">
-          Sub Total: ${total}
+        <span class="text-2xl flex w-full justify-center items-center gap-x-2 m-4">
+          Sub Total: Rs {total}
+          <button
+            className="w-32 p-2 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded-lg "
+            onClick={handleModelTwo}
+          >
+            Buy Now
+          </button>
         </span>
         {cart.length === 0 && (
           <>
@@ -95,7 +101,7 @@ const Cart = ({ cart, setCart }) => {
                         {curElm.Name}
                       </h5>
                       <span className="text-sm text-gray-500">
-                        Price: ${curElm.price}
+                        Price: Rs {curElm.price}
                       </span>
                       <div className="flex mt-4 md:mt-4">
                         <button
@@ -117,13 +123,6 @@ const Cart = ({ cart, setCart }) => {
                           -
                         </button>
                       </div>
-
-                      <button
-                        className="border mt-4 p-2 text-white bg-orange-500 rounded-lg hover:bg-orange-600 w-36"
-                        onClick={handleModelTwo}
-                      >
-                        Buy Now
-                      </button>
                     </div>
                   </div>
                 </div>
