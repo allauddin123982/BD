@@ -11,6 +11,7 @@ import Cart from "./Pages/Cart";
 import DiscoverPlasma from "./Pages/Articles/DiscoverPlasma";
 import Cardiovascular from "./Pages/Articles/Cardiovascular";
 import BloodTypes from "./Pages/Articles/BloodTypes";
+import AboutUs from "./Pages/AboutUs";
 function App() {
   
   const [cart, setCart] = useState([])
@@ -45,6 +46,7 @@ function App() {
         <Route path="/DiscoverPlasma" element={<DiscoverPlasma/>} />
         <Route path="/Cardiovascular" element={<Cardiovascular/>} />
         <Route path="/BloodTypes" element={<BloodTypes/>} />
+        <Route path="/aboutus" element={<AboutUs/>} />
         
       </Routes>
     </Router>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import HeroLeft from "../../assets/HeroLeft.png";
 import mainLife from "../../assets/mainLife.png";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
@@ -24,7 +23,8 @@ const Hero = ({
     "/image/a9.jpg",
     "/image/a10.jpg",
     "/image/a11.jpg",
-    "/image/a12.jpeg",
+    "/image/a12.jpg",
+    "/image/a14.jpg",
   ];
 
   const handleSearch = (e) => {
@@ -44,7 +44,7 @@ const Hero = ({
     if (carousel) {
       const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
       if (carousel.scrollLeft >= maxScrollLeft) {
-        carousel.scrollTo({ left: 0, behavior: "smooth" });
+        carousel.scrollTo({ left: 50, behavior: "smooth" });
       } else {
         carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
       }
@@ -96,7 +96,7 @@ const Hero = ({
             Donate Now...!
           </p>
 
-          <div className="relative w-[380px] md:w-[600px] ">
+          <div className="relative w-[380px] md:w-[500px] mt-2 md:m-4">
             <AiOutlineLeft
               className="arrow arrow-left"
               onClick={() => Sliderleft(elementRef.current)}
@@ -119,12 +119,10 @@ const Hero = ({
               onClick={() => SliderRight(elementRef.current)}
             />
           </div>
-
-          {/* <img src={HeroLeft} alt="heroleft" className="md:w-[600px] pt-4" /> */}
         </div>
 
         {/* Right */}
-        <div className="right w-full border-black md:pt-4 flex flex-col items-center">
+        <div className="right w-full md:pt-4 flex flex-col items-center">
           <form
             className="flex flex-col w-[360px] md:w-full md:flex md:flex-row gap-2 p-2 "
             onSubmit={handleSearch}
@@ -167,15 +165,10 @@ const Hero = ({
             </p>
           </div>
 
-          <div className="tabs flex flex-wrap gap-6 p-4 border-b-4 pb-10 border-black mt-4 ">
-            <Link to={"/DonateBlood"}>
+          <div className="tabs flex flex-wrap gap-6 p-4 border-b-4 pb-10 border-black md:w-[600px] ">
+            <Link to={"/aboutus"}>
               <button className="bg-black text-white p-2 md:p-3 aspect-auto md:text-lg md:font-medium rounded-md">
-                Donate Blood
-              </button>
-            </Link>
-            <Link to={"/DonateBlood"}>
-              <button className="bg-black text-white p-2 md:p-3 aspect-auto  md:text-lg md:font-medium rounded-md">
-                Donate Plasma
+                About us
               </button>
             </Link>
 

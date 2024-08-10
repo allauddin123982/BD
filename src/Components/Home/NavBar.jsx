@@ -6,10 +6,10 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-gray-600 to-slate-900 p-2 ">
+      <div className="bg-gradient-to-r from-gray-600 to-slate-900 p-2 w-full ">
         <div className="max-w-[1380px] items-center py-2 flex justify-between mx-auto">
-          <div className="text-4xl font-bold font-serif text-white flex items-center gap-2">
-            <p className="text-red-600">Blood</p> Donation
+          <div className="text-3xl  font-serif text-white flex items-center gap-2">
+            <p className="text-red-600 font-bold">Blood</p> & Plasma Link
           </div>
           {toggle ? (
             <AiOutlineClose
